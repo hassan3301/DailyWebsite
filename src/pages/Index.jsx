@@ -2,6 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import dailyLogo from "@/assets/daily-logo.png";
 import claudeLogo from "/claude-color.png";
+import n8nLogo from "/n8n-icon.png";
+import zapierLogo from "/zapier-icon.png";
+import makeLogo from "/make-ai-automation-icon.png";
+import googleCloudLogo from "/google-cloud-icon.png";
+import geminiLogo from "/google-gemini-icon.png";
+import chatgptLogo from "/chatgpt-icon.png";
 
 // ── Color tokens ──────────────────────────────────────────────────────────────
 // bg:        #FFFFFF / #FDF9F0 (cream)
@@ -256,11 +262,11 @@ function Navbar() {
   const hrefs = { services:"#services",industries:"#industries",process:"#process",FAQ:"#faq",contact:"#contact" };
   return (
     <nav style={{ position:"fixed",top:0,left:0,right:0,zIndex:100,padding:"0 24px",transition:"all 0.3s ease",background:scrolled?"rgba(255,255,255,0.95)":"transparent",backdropFilter:scrolled?"blur(20px)":"none",borderBottom:scrolled?"1px solid rgba(232,224,208,0.6)":"none" }}>
-      <div style={{ width:"100%",maxWidth:1400,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:70 }}>
+      <div style={{ width:"100%",maxWidth:1400,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:70,position:"relative" }}>
         <a href="#" style={{ display:"flex",alignItems:"center",textDecoration:"none" }}>
             <Logo height={40} />
           </a>
-        <div className="nav-pill" style={{ display:"flex",alignItems:"center",gap:2,padding:"5px",borderRadius:40,background:"rgba(255,255,255,0.9)",backdropFilter:"blur(20px)",border:"1px solid #E8E0D0" }}>
+        <div className="nav-pill" style={{ position:"absolute",left:"50%",transform:"translateX(-50%)",display:"flex",alignItems:"center",gap:2,padding:"5px",borderRadius:40,background:"rgba(255,255,255,0.9)",backdropFilter:"blur(20px)",border:"1px solid #E8E0D0" }}>
           {links.map(l => {
             const key = l==="FAQ"?"faq":l;
             const isActive = active === key;
@@ -453,80 +459,222 @@ function CustomerAgentMockup() {
   );
 }
 
-// ── Claude Suite Section ───────────────────────────────────────────────────────
-const SUITE_CARDS = [
+// ── AI Solutions Carousel ─────────────────────────────────────────────────────
+const SLIDE_CLAUDE = [
   {
     title: "Claude Cowork",
-    desc: "We configure Claude with a persistent understanding of your business — your team structure, internal terminology, preferred communication style, and workflow rules. This means every Claude session starts with full context already in place. Your team stops repeating themselves and Claude stops giving generic answers.",
-    bullets: [
-      "Persistent business context across every session",
-      "Custom instructions for tone, format, and priorities",
-      "Shared workspace settings for your whole team",
-      "Onboards Claude to your company once — useful every time",
-    ],
+    desc: "We configure Claude with a persistent understanding of your business — your team structure, internal terminology, preferred communication style, and workflow rules. Every session starts with full context already in place. Your team stops repeating themselves and Claude stops giving generic answers.",
+    bullets: ["Persistent business context across every session","Custom instructions for tone, format, and priorities","Shared workspace settings for your whole team","Onboards Claude to your company once — useful every time"],
   },
   {
     title: "Custom Skills",
     desc: "Custom skills are single-command shortcuts for the AI tasks your team runs most. Instead of writing prompts from scratch each time, your team triggers a pre-built workflow with one command — and Claude executes it using your templates, data, and standards. We build these around the actual work your team does every day.",
-    bullets: [
-      "One-command triggers for recurring tasks",
-      "Built on your own templates, tone, and data",
-      "Consistent, on-brand outputs every time",
-      "Examples: draft follow-up, summarize meeting, generate report",
-    ],
+    bullets: ["One-command triggers for recurring tasks","Built on your own templates, tone, and data","Consistent, on-brand outputs every time","Examples: draft follow-up, summarize meeting, generate report"],
   },
   {
     title: "Application Integrations",
-    desc: "We connect Claude directly into the platforms your team already uses — so it can read your emails, pull from your CRM, check your calendar, and update your task manager without anyone copy-pasting between tabs. Claude acts across your entire tool stack from a single conversation, reducing the back-and-forth that slows your team down.",
-    bullets: [
-      "Google Workspace, Slack, HubSpot, Notion, and more",
-      "Live data access — not just static uploaded files",
-      "Triggers actions across platforms from one prompt",
-      "Works inside the tools your team is already in",
+    desc: "We connect Claude directly into the platforms your team already uses — so it can read your emails, pull from your CRM, check your calendar, and update your task manager without anyone copy-pasting between tabs. Claude acts across your entire tool stack from a single conversation.",
+    bullets: ["Google Workspace, Slack, HubSpot, Notion, and more","Live data access — not just static uploaded files","Triggers actions across platforms from one prompt","Works inside the tools your team is already in"],
+  },
+];
+
+const SLIDE_AUTOMATION = [
+  {
+    name: "n8n",
+    logo: n8nLogo,
+    color: "#EA4B71",
+    tagline: "Developer-grade, self-hosted automation",
+    desc: "n8n gives technically capable teams full control over their automation infrastructure. We build complex, multi-step workflows that run on your own servers — connecting APIs, databases, and internal tools with complete data privacy and no per-task pricing.",
+    bullets: ["Self-hosted — your data never leaves your environment","Webhook triggers and custom API connections","JavaScript nodes for complex business logic","Ideal for teams with sensitive data or custom infrastructure"],
+  },
+  {
+    name: "Make",
+    logo: makeLogo,
+    color: "#6D4AFF",
+    tagline: "Visual no-code automation for business teams",
+    desc: "Make's visual scenario builder lets us rapidly deploy powerful automations your team can understand and manage. With 1,000+ app integrations out of the box, we connect your existing tools into smooth, reliable workflows without writing a single line of code.",
+    bullets: ["1,000+ pre-built app integrations","Visual flow builder your team can follow","Real-time execution monitoring and error handling","Fast to build, easy to maintain and update"],
+  },
+  {
+    name: "Zapier",
+    logo: zapierLogo,
+    color: "#FF4A00",
+    tagline: "The automation standard for SMB teams",
+    desc: "Zapier is the most widely recognized automation platform for a reason — it's fast to deploy, easy for any team member to manage, and connects 6,000+ apps. We build and hand off Zapier workflows your team can own from day one, no technical knowledge required.",
+    bullets: ["6,000+ app integrations — the largest library available","Simple trigger → action logic any team member can manage","Fast deployment — workflows live in days, not weeks","Built to be handed off to your team to own and modify"],
+  },
+];
+
+const SLIDE_AGENTS = [
+  {
+    title: "Internal Knowledge Agents",
+    desc: "We build RAG-powered agents that search across your internal documents, policies, SOPs, and databases — giving your team instant answers without digging through folders, asking colleagues, or waiting on replies. The agent learns your content and surfaces the right information in seconds.",
+    bullets: ["Searches documents, PDFs, wikis, and databases","Instant answers from your internal knowledge base","Staff get accurate, sourced responses on demand","Reduces interruptions and knowledge bottlenecks"],
+  },
+  {
+    title: "Customer-Facing Agents",
+    desc: "We build agents that live on your website or inside your client communication channels — handling inquiries, capturing leads, booking appointments, and answering questions 24/7. Trained on your content, they respond the way your brand would, and escalate to a human when needed.",
+    bullets: ["24/7 customer inquiry handling","Lead capture and qualification flows","Appointment booking and follow-up","Seamless handoff to your team when needed"],
+  },
+  {
+    title: "Process Automation Agents",
+    desc: "These agents don't just answer questions — they take action. We build agents that monitor triggers, make decisions, and execute multi-step tasks across your systems automatically. From CRM updates to report generation to cross-platform data syncs, they handle the repetitive work so your team doesn't have to.",
+    bullets: ["Triggered by events across your systems","Updates CRMs, sends notifications, generates reports","Multi-step autonomous task execution","Exception handling and escalation logic built in"],
+  },
+];
+
+const CAROUSEL_SLIDES = [
+  {
+    id: "claude",
+    label: "Claude Suite",
+    title: "Claude Suite Integration",
+    subtitle: "Beyond AI agents, we deploy the full Claude toolset inside your business — so your team has a smarter, faster way to work every single day.",
+    type: "cards",
+    cards: SLIDE_CLAUDE,
+    showClaudeLogo: true,
+  },
+  {
+    id: "automation",
+    label: "Workflow Automation",
+    title: "Workflow Automation",
+    subtitle: "We implement automation across the leading platforms — choosing the right tool for your team's technical level, data requirements, and existing stack.",
+    type: "platforms",
+    platforms: SLIDE_AUTOMATION,
+  },
+  {
+    id: "agents",
+    label: "Custom Agents",
+    title: "Custom Built Agents",
+    subtitle: "When off-the-shelf tools aren't enough, we engineer AI agents from the ground up — deployed on Google Cloud's AI infrastructure and built on leading LLMs including Gemini, Claude Opus, and GPT.",
+    type: "cards",
+    cards: SLIDE_AGENTS,
+    poweredBy: [
+      { logo: googleCloudLogo, name: "Google Cloud" },
+      { logo: geminiLogo, name: "Gemini" },
+      { logo: claudeLogo, name: "Claude" },
+      { logo: chatgptLogo, name: "GPT" },
     ],
   },
 ];
 
-function ClaudeSuiteSection() {
+function SuiteCardItem({ card }) {
+  return (
+    <div
+      style={{ background:"#fff",border:"1px solid #E8E0D0",borderRadius:16,padding:"28px 28px 32px",transition:"all 0.25s",boxShadow:"0 2px 8px rgba(0,0,0,0.04)",height:"100%" }}
+      onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(212,168,67,0.45)";e.currentTarget.style.transform="translateY(-4px)";e.currentTarget.style.boxShadow="0 10px 28px rgba(212,168,67,0.13)";}}
+      onMouseLeave={e=>{e.currentTarget.style.borderColor="#E8E0D0";e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 2px 8px rgba(0,0,0,0.04)";}}
+    >
+      <h3 style={{ fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:18,color:"#1A1A2E",marginBottom:12,lineHeight:1.3 }}>{card.title}</h3>
+      <p style={{ fontFamily:"'DM Sans',sans-serif",fontSize:13,color:"#6B7280",lineHeight:1.75,marginBottom:20 }}>{card.desc}</p>
+      <div style={{ display:"flex",flexDirection:"column",gap:9 }}>
+        {card.bullets.map(b=>(
+          <div key={b} style={{ display:"flex",alignItems:"flex-start",gap:9 }}>
+            <span style={{ marginTop:2,flexShrink:0,width:16,height:16,borderRadius:"50%",background:"rgba(212,168,67,0.15)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:9,color:"#92700C" }}>✓</span>
+            <span style={{ fontFamily:"'DM Sans',sans-serif",fontSize:12.5,color:"#4B5563",lineHeight:1.5 }}>{b}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PlatformCardItem({ platform }) {
+  return (
+    <div
+      style={{ background:"#fff",border:"1px solid #E8E0D0",borderRadius:16,padding:"28px 28px 32px",transition:"all 0.25s",boxShadow:"0 2px 8px rgba(0,0,0,0.04)",height:"100%" }}
+      onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(212,168,67,0.45)";e.currentTarget.style.transform="translateY(-4px)";e.currentTarget.style.boxShadow="0 10px 28px rgba(212,168,67,0.13)";}}
+      onMouseLeave={e=>{e.currentTarget.style.borderColor="#E8E0D0";e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 2px 8px rgba(0,0,0,0.04)";}}
+    >
+      <div style={{ display:"flex",alignItems:"center",gap:10,marginBottom:14 }}>
+        <img src={platform.logo} alt={platform.name} style={{ width:28,height:28,objectFit:"contain" }} />
+        <span style={{ fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:15,color:"#1A1A2E" }}>{platform.name}</span>
+      </div>
+      <p style={{ fontFamily:"'DM Sans',sans-serif",fontSize:11.5,fontWeight:600,color:"#6B7280",textTransform:"uppercase",letterSpacing:"0.06em",marginBottom:10 }}>{platform.tagline}</p>
+      <p style={{ fontFamily:"'DM Sans',sans-serif",fontSize:13,color:"#6B7280",lineHeight:1.75,marginBottom:20 }}>{platform.desc}</p>
+      <div style={{ display:"flex",flexDirection:"column",gap:9 }}>
+        {platform.bullets.map(b=>(
+          <div key={b} style={{ display:"flex",alignItems:"flex-start",gap:9 }}>
+            <span style={{ marginTop:2,flexShrink:0,width:16,height:16,borderRadius:"50%",background:"rgba(212,168,67,0.15)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:9,color:"#92700C" }}>✓</span>
+            <span style={{ fontFamily:"'DM Sans',sans-serif",fontSize:12.5,color:"#4B5563",lineHeight:1.5 }}>{b}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AISolutionsCarousel() {
+  const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const goTo = (idx) => {
+    const clamped = Math.max(0, Math.min(CAROUSEL_SLIDES.length - 1, idx));
+    if (clamped === active) return;
+    setVisible(false);
+    setTimeout(() => { setActive(clamped); setVisible(true); }, 220);
+  };
+
+  const prev = () => goTo(active - 1);
+  const next = () => goTo(active + 1);
+
+  const slide = CAROUSEL_SLIDES[active];
+  const canPrev = active > 0;
+  const canNext = active < CAROUSEL_SLIDES.length - 1;
+
+  const ArrowBtn = ({ onClick, disabled, children }) => (
+    <button onClick={onClick} disabled={disabled} style={{ width:36,height:36,borderRadius:"50%",border:"1px solid",borderColor:disabled?"#E8E0D0":"#D4A843",background:disabled?"transparent":"rgba(212,168,67,0.08)",color:disabled?"#D1D5DB":"#92700C",display:"flex",alignItems:"center",justifyContent:"center",cursor:disabled?"default":"pointer",transition:"all 0.2s",flexShrink:0,fontSize:16 }}>
+      {children}
+    </button>
+  );
+
   return (
     <section id="claude-suite" style={{ padding:"80px 24px 100px",background:"#FDF9F0",position:"relative",zIndex:10 }}>
       <div style={{ maxWidth:1100,margin:"0 auto" }}>
-        {/* Header */}
-        <div className="animate-on-scroll" style={{ textAlign:"center",marginBottom:52 }}>
-          <div style={{ display:"inline-flex",alignItems:"center",gap:10,marginBottom:18 }}>
-            <img src={claudeLogo} alt="Claude" style={{ width:32,height:32,objectFit:"contain" }} />
-            <h2 style={{ fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:"clamp(22px,2.5vw,28px)",color:"#1A1A2E",margin:0,letterSpacing:"-0.02em" }}>
-              Claude Suite Integration
-            </h2>
-          </div>
-          <p style={{ fontFamily:"'DM Sans',sans-serif",fontSize:15,color:"#6B7280",lineHeight:1.7,maxWidth:560,margin:"0 auto" }}>
-            Beyond AI agents, we deploy the full Claude toolset inside your business — so your team has a smarter, faster way to work every single day.
-          </p>
+
+        {/* Section title */}
+        <div className="animate-on-scroll" style={{ textAlign:"center",marginBottom:48 }}>
+          <SectionTitle before="Our" accent="Trusted Tools" />
         </div>
-        {/* Cards */}
-        <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:20 }}>
-          {SUITE_CARDS.map((card) => (
-            <div key={card.title} className="animate-on-scroll"
-              style={{ background:"#fff",border:"1px solid #E8E0D0",borderRadius:16,padding:"28px 28px 32px",transition:"all 0.25s",boxShadow:"0 2px 8px rgba(0,0,0,0.04)" }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(212,168,67,0.45)";e.currentTarget.style.transform="translateY(-4px)";e.currentTarget.style.boxShadow="0 10px 28px rgba(212,168,67,0.13)";}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor="#E8E0D0";e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 2px 8px rgba(0,0,0,0.04)";}}
-            >
-              {/* Title */}
-              <h3 style={{ fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:18,color:"#1A1A2E",marginBottom:12,lineHeight:1.3 }}>{card.title}</h3>
-              {/* Description */}
-              <p style={{ fontFamily:"'DM Sans',sans-serif",fontSize:13,color:"#6B7280",lineHeight:1.75,marginBottom:20 }}>{card.desc}</p>
-              {/* Bullets */}
-              <div style={{ display:"flex",flexDirection:"column",gap:9 }}>
-                {card.bullets.map(b => (
-                  <div key={b} style={{ display:"flex",alignItems:"flex-start",gap:9 }}>
-                    <span style={{ marginTop:2,flexShrink:0,width:16,height:16,borderRadius:"50%",background:"rgba(212,168,67,0.15)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:9,color:"#92700C" }}>✓</span>
-                    <span style={{ fontFamily:"'DM Sans',sans-serif",fontSize:12.5,color:"#4B5563",lineHeight:1.5 }}>{b}</span>
+
+        {/* Slide content */}
+        <div style={{ opacity:visible?1:0,transform:visible?"translateY(0)":"translateY(10px)",transition:"opacity 0.22s ease, transform 0.22s ease" }}>
+          {/* Slide header with arrows */}
+          <div style={{ textAlign:"center",marginBottom:44 }}>
+            <div style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:14,marginBottom:14 }}>
+              <ArrowBtn onClick={prev} disabled={!canPrev}>←</ArrowBtn>
+              <div style={{ display:"flex",alignItems:"center",gap:10 }}>
+                {slide.showClaudeLogo && <img src={claudeLogo} alt="Claude" style={{ width:30,height:30,objectFit:"contain" }} />}
+                <h2 style={{ fontFamily:"'DM Sans',sans-serif",fontWeight:700,fontSize:"clamp(20px,2.5vw,26px)",color:"#1A1A2E",margin:0,letterSpacing:"-0.02em" }}>{slide.title}</h2>
+              </div>
+              <ArrowBtn onClick={next} disabled={!canNext}>→</ArrowBtn>
+            </div>
+            <p style={{ fontFamily:"'DM Sans',sans-serif",fontSize:15,color:"#6B7280",lineHeight:1.7,maxWidth:600,margin:"0 auto" }}>{slide.subtitle}</p>
+            {slide.poweredBy && (
+              <div style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:6,marginTop:22,flexWrap:"wrap" }}>
+                <span style={{ fontFamily:"'DM Sans',sans-serif",fontSize:11,color:"#9CA3AF",letterSpacing:"0.06em",textTransform:"uppercase",marginRight:4 }}>Built on</span>
+                {slide.poweredBy.map(p => (
+                  <div key={p.name} style={{ display:"flex",alignItems:"center",gap:6,padding:"5px 12px",borderRadius:20,background:"#fff",border:"1px solid #E8E0D0" }}>
+                    <img src={p.logo} alt={p.name} style={{ width:16,height:16,objectFit:"contain" }} />
+                    <span style={{ fontFamily:"'DM Sans',sans-serif",fontSize:12,fontWeight:600,color:"#4B5563" }}>{p.name}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            )}
+          </div>
+
+          {/* Cards */}
+          <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:20,alignItems:"start" }}>
+            {slide.type === "cards" && slide.cards.map(card => <SuiteCardItem key={card.title} card={card} />)}
+            {slide.type === "platforms" && slide.platforms.map(p => <PlatformCardItem key={p.name} platform={p} />)}
+          </div>
+        </div>
+
+        {/* Dot indicators */}
+        <div style={{ display:"flex",justifyContent:"center",gap:7,marginTop:52 }}>
+          {CAROUSEL_SLIDES.map((s,i) => (
+            <button key={s.id} onClick={()=>goTo(i)} style={{ width:i===active?24:8,height:8,borderRadius:4,border:"none",cursor:"pointer",transition:"all 0.25s",background:i===active?"#D4A843":"#E8E0D0",padding:0 }} />
           ))}
         </div>
+
       </div>
     </section>
   );
@@ -978,8 +1126,8 @@ function Footer() {
           <h4 style={{ fontSize:11,fontFamily:"'DM Sans',sans-serif",letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:14 }}>
             <span style={{ fontFamily:"'Instrument Serif',serif",fontStyle:"italic",color:"#D4A843",fontSize:14 }}>Socials</span>
           </h4>
-          {["Instagram","Twitter","LinkedIn"].map(s=>(
-            <a key={s} href="#" style={{ display:"block",fontSize:13,color:"#9CA3AF",textDecoration:"none",marginBottom:9,fontFamily:"'DM Sans',sans-serif",transition:"color 0.25s" }}
+          {[["LinkedIn","https://linkedin.com/company/dailysolutionsca"]].map(([s,href])=>(
+            <a key={s} href={href} target="_blank" rel="noopener noreferrer" style={{ display:"block",fontSize:13,color:"#9CA3AF",textDecoration:"none",marginBottom:9,fontFamily:"'DM Sans',sans-serif",transition:"color 0.25s" }}
               onMouseEnter={e=>e.currentTarget.style.color="#1A1A2E"} onMouseLeave={e=>e.currentTarget.style.color="#9CA3AF"}>{s}</a>
           ))}
         </div>
@@ -1074,7 +1222,7 @@ export default function Index() {
         <Hero loaded={loaded} />
         <ValueProp />
         <Services />
-        <ClaudeSuiteSection />
+        <AISolutionsCarousel />
         <IndustryTabs scrollToRef={industryRef} activeIdx={activeIndustry} setActiveIdx={setActiveIndustry} />
         <CantFindIndustry />
         <Process />
