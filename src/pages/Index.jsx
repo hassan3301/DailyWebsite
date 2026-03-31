@@ -922,12 +922,14 @@ function ProcessCard({ num, title, desc, children }) {
 
 function Process() {
   return (
-    <section id="process" style={{ padding:"80px 24px 100px",maxWidth:1300,margin:"0 auto",position:"relative",zIndex:10,background:"#FDF9F0" }}>
-      <SectionTitle before="The" accent="process" />
-      <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:18 }}>
-        <ProcessCard num="01" title="Discover" desc="We map your current tools, data flows, workflows, and pain points to uncover the highest-value opportunities for AI adoption and integration."><AnalyzeVisual /></ProcessCard>
-        <ProcessCard num="02" title="Design & Build" desc="Using proven AI technology, we design your custom solution — built to be secure, scalable, and integrated with what you already use."><BuildVisual /></ProcessCard>
-        <ProcessCard num="03" title="Deploy & Evolve" desc="We launch with full onboarding and support, then monitor performance and continuously refine as your needs grow — ensuring long-term ROI and adoption."><MaintainVisual /></ProcessCard>
+    <section id="process" style={{ background:"#FDF9F0",position:"relative",zIndex:10 }}>
+      <div style={{ padding:"80px 24px 100px",maxWidth:1300,margin:"0 auto" }}>
+        <SectionTitle before="The" accent="process" />
+        <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:18 }}>
+          <ProcessCard num="01" title="Discover" desc="We map your current tools, data flows, workflows, and pain points to uncover the highest-value opportunities for AI adoption and integration."><AnalyzeVisual /></ProcessCard>
+          <ProcessCard num="02" title="Design & Build" desc="Using proven AI technology, we design your custom solution — built to be secure, scalable, and integrated with what you already use."><BuildVisual /></ProcessCard>
+          <ProcessCard num="03" title="Deploy & Evolve" desc="We launch with full onboarding and support, then monitor performance and continuously refine as your needs grow — ensuring long-term ROI and adoption."><MaintainVisual /></ProcessCard>
+        </div>
       </div>
     </section>
   );
@@ -995,12 +997,14 @@ function FAQ() {
     </div>
   );
   return (
-    <section id="faq" style={{ padding:"80px 24px 100px",maxWidth:1300,margin:"0 auto",position:"relative",zIndex:10,background:"#FDF9F0" }}>
-      <SectionTitle accent="FAQ" center />
-      <p className="animate-on-scroll" style={{ textAlign:"center",color:"#6B7280",fontSize:14,marginBottom:44,fontFamily:"'DM Sans',sans-serif",marginTop:-28 }}>We've gone ahead and answered some of the questions you might have.</p>
-      <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:0,alignItems:"start" }}>
-        <div>{left.map((item,i)=><FaqItem key={i} item={item} idx={i*2} />)}</div>
-        <div style={{ paddingLeft:12 }}>{right.map((item,i)=><FaqItem key={i} item={item} idx={i*2+1} />)}</div>
+    <section id="faq" style={{ background:"#FDF9F0",position:"relative",zIndex:10 }}>
+      <div style={{ padding:"80px 24px 100px",maxWidth:1300,margin:"0 auto" }}>
+        <SectionTitle accent="FAQ" center />
+        <p className="animate-on-scroll" style={{ textAlign:"center",color:"#6B7280",fontSize:14,marginBottom:44,fontFamily:"'DM Sans',sans-serif",marginTop:-28 }}>We've gone ahead and answered some of the questions you might have.</p>
+        <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",gap:0,alignItems:"start" }}>
+          <div>{left.map((item,i)=><FaqItem key={i} item={item} idx={i*2} />)}</div>
+          <div style={{ paddingLeft:12 }}>{right.map((item,i)=><FaqItem key={i} item={item} idx={i*2+1} />)}</div>
+        </div>
       </div>
     </section>
   );
@@ -1114,7 +1118,7 @@ function CTABanner() {
 // ── Footer ────────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer style={{ borderTop:"1px solid #E8E0D0",position:"relative",zIndex:10,background:"#fff" }}>
+    <footer style={{ borderTop:"1px solid #E8E0D0",position:"relative",zIndex:10,background:"#FDF9F0" }}>
       <div style={{ maxWidth:1300,margin:"0 auto",padding:"56px 24px 28px",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:36 }}>
         <div>
           <a href="#" style={{ display:"flex",alignItems:"center",textDecoration:"none",marginBottom:10 }}>
